@@ -1,26 +1,44 @@
 ---
 title: "ST512-SP26-Homework-5"
-format: html
-editor: visual
+subtitle: Jason Menjiar-Hernandez
+format: pdf
 ---
 
-## Quarto
+## Problem 1
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+**a**
 
-## Running Code
+| Source              | df  | SS   | MS    | F-value | p-value  |
+|---------------------|-----|------|-------|---------|----------|
+| **Factor A**        | 4   | 375  | 93.75 | 27.79   | 3.66e-14 |
+| **Factor B**        | 2   | 462  | 231.0 | 68.49   | 0        |
+| **AxB Interaction** | 8   | 38   | 4.75  | 1.40    | 0.210    |
+| **Error**           | 75  | 253  | 3.373 | --      | --       |
+| **Total**           | 89  | 1128 | --    | --      | --       |
 
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+**b**
+
+Based on the ANOVA table, the interaction factor has a p-value of 0.210. Using a 0.05 significance level, we fail to reject the null hypothesis. Therefore, there is NOT a significant interaction between factor A and factor B. 
+
+**c**
+
+Based on the ANOVA table, for Factor A the p-value was calculated to be 3.66e-14. Using a significance value of 0.05, we reject the null hypothesis. Therefore, there is a significant difference in mean response across the levels of factor A. 
+
+
+**d**
+
+Based on the ANOVA table, for Factor B the p-value was calculated to be 0. Using a significance value of 0.05, we reject the null hypothesis. Therefore, there is a significant difference in mean response across the levels of factor B. 
+
+## Problem 2
+
+
+
+## R code
+
+**problem 1**
 
 ```{r}
-1 + 1
+1-pf(27.79,4,75)
+1-pf(68.49, 2,75)
+1-pf(1.40,8,75)
 ```
-
-You can add options to executable code like this
-
-```{r}
-#| echo: false
-2 * 2
-```
-
-The `echo: false` option disables the printing of code (only output is displayed).

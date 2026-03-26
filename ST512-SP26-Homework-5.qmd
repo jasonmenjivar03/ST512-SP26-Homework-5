@@ -18,18 +18,47 @@ format: pdf
 
 **b**
 
-Based on the ANOVA table, the interaction factor has a p-value of 0.210. Using a 0.05 significance level, we fail to reject the null hypothesis. Therefore, there is NOT a significant interaction between factor A and factor B. 
+Based on the ANOVA table, the interaction factor has a p-value of 0.210. Using a 0.05 significance level, we fail to reject the null hypothesis. Therefore, there is NOT a significant interaction between factor A and factor B.
 
 **c**
 
-Based on the ANOVA table, for Factor A the p-value was calculated to be 3.66e-14. Using a significance value of 0.05, we reject the null hypothesis. Therefore, there is a significant difference in mean response across the levels of factor A. 
-
+Based on the ANOVA table, for Factor A the p-value was calculated to be 3.66e-14. Using a significance value of 0.05, we reject the null hypothesis. Therefore, there is a significant difference in mean response across the levels of factor A.
 
 **d**
 
-Based on the ANOVA table, for Factor B the p-value was calculated to be 0. Using a significance value of 0.05, we reject the null hypothesis. Therefore, there is a significant difference in mean response across the levels of factor B. 
+Based on the ANOVA table, for Factor B the p-value was calculated to be 0. Using a significance value of 0.05, we reject the null hypothesis. Therefore, there is a significant difference in mean response across the levels of factor B.
 
 ## Problem 2
+
+**a**
+
+a=4, b=3, n=3, N=36, SSE=720
+
+df (error)= 24, MSE=720/24=30.0
+
+No interaction --\> each factor A mean averages over b\*n=9
+
+Tukey MSD:
+
+$q_{\alpha,4,24} * \sqrt{MSE/n_A)}$ = 3.90 \* $\sqrt{30/9}$ = 7.12
+
+Bonferroni MSD:
+
+$t_{\frac{\alpha}{2C},24}$ \* $\sqrt{2MSE/n_A}$ = 2.875 \* $\sqrt{60/9}$ = 7.42
+
+**b**
+
+Interaction --\> compare Factor A within one level of Factor B, n=3
+
+Tukey MSD:
+
+$q_{\alpha,4,24} * \sqrt{MSE/n_A)}$ = 3.90 \* $\sqrt{30/3}$ = 12.33
+
+Bonferroni MSD:
+
+$t_{\frac{\alpha}{2C},24}$ \* $\sqrt{2MSE/n_A}$ = 2.875 \* $\sqrt{60/3}$ = 12.86
+
+## Problem 3 
 
 
 
@@ -41,4 +70,11 @@ Based on the ANOVA table, for Factor B the p-value was calculated to be 0. Using
 1-pf(27.79,4,75)
 1-pf(68.49, 2,75)
 1-pf(1.40,8,75)
+```
+
+**problem 2**
+
+```{r}
+qtukey(.95,4,24)
+qt(0.0041667,24)
 ```

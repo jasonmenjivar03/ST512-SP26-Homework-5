@@ -102,19 +102,71 @@ Temperature<-factor(Temperature)
 interaction.plot(Temperature, Variety, Dry.Mean)
 ```
 
-All three varieties increase with temperature, but at different rates. The lines cross, indicating a significant interaction. Variety 0 is lowest at 15°C but highest at 25°C. 
+All three varieties increase with temperature, but at different rates. The lines cross, indicating a significant interaction. Variety 0 is lowest at 15°C but highest at 25°C.
 
 **d**
 
-$H_o: all (\alpha\beta)_{ij} = 0$ 
+$H_o: all (\alpha\beta)_{ij} = 0$
 
-$H_A: at least one (\alpha\beta)_{ij} \neq 0$ 
+$H_A: at least one (\alpha\beta)_{ij} \neq 0$
 
-F-value: $\frac{MS_{AB}}{MSE}$ = 1704.4/47.413= 35.95 
+F-value: $\frac{MS_{AB}}{MSE}$ = 1704.4/47.413= 35.95
 
-1-pf(35.94,4,63) = p value = 1.33e-15 
+1-pf(35.94,4,63) = p value = 1.33e-15
 
-There is a significant interaction between Variety and Temperature. 
+There is a significant interaction between Variety and Temperature.
+
+## Problem 4
+
+| Source      | df  | SS      | MS     | F-value | p-value |
+|-------------|-----|---------|--------|---------|---------|
+| Climate     | 2   | 1255.24 | 627.62 | 11.13   | 0.0002  |
+| Location    | 2   | 98.63   | 49.315 | 0.875   | 0.4255  |
+| Interaction | 4   | 882.76  | 220.69 | 3.95    | 0.0092  |
+| Error       | 36  | 2029.68 | 56.38  | --      | --      |
+| Total       | 44  | 4266.31 | --     | --      | --      |
+
+$H_o: \frac{\mu_{11}+\mu_{12}}{2} = \frac{\mu_{31}+\mu_{32}}{2}$ 
+
+$L = 0.5\mu_{11} + 0.5\mu_{12} + (-0.5)\mu_{31} + (-0.5)\mu_{32} = 0$ 
+
+$\hat{L} = 0.5\bar{y}_{11.} + 0.5\bar{y}_{12.} + (-0.5)\bar{y}_{31.} + 0.5\bar{y}_{32.}$ 
+
+$\hat{L}$ = 0.5(22.8) + 0.5(19.8) + (-0.5)(28) + (-0.5)(26) = -5.7 
+
+V($\hat{L}$) = MSE $\sum\frac{c_i^2}{n}$ = 56.38 * 4/5 = 45.10 
+
+SE($\hat{L}$) = 6.72 
+
+t = $\frac{\hat{L}}{SE(\hat{L})}$ = -5.7/6.72 = -0.848 
+
+p-value = 0.201 > 0.05; FTR null
+
+There is not a significant difference between the number of bites in the arm or neck in cold and and humid climates. 
+
+## Problem 5 
+
+N=299, df(error)= 295, MSE= $\frac{42088}{295}$= 142.67 
+
+**a**
+
+Comparing model 1 and 2. 
+
+F = $\frac{42122-42088}{142.67}$ = 0.238
+
+p.value= 1-pf(0.238,1,295) = 0.626
+
+There is NOT a significant interaction between Gender and Rank. 
+
+**b**
+
+Comparing model 1 and 3. 
+
+F = $\frac{785}{142.67}$ = 5.50
+
+p.value= 1-pf(5.50,1,295) = 0.0197
+
+There IS a significant main effect of Gender. 
 
 ## R code
 
@@ -138,6 +190,7 @@ qt(0.0041667,24)
 ```{r}
 1-pf(35.95,4,63)
 ```
+
 ```{r}
 plant_data<-read.csv("plant_data.csv",header=TRUE)
 attach(plant_data)
@@ -147,3 +200,10 @@ Temperature<-factor(Temperature)
 interaction.plot(Temperature, Variety, Dry.Mean)
 ```
 
+**problem 4**
+
+```{r}
+1-pf(11.13, 2, 36)
+1-pf(0.875,2,36)
+1-pf(3.95,4,36)
+```

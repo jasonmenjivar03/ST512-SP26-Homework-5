@@ -58,9 +58,63 @@ Bonferroni MSD:
 
 $t_{\frac{\alpha}{2C},24}$ \* $\sqrt{2MSE/n_A}$ = 2.875 \* $\sqrt{60/3}$ = 12.86
 
-## Problem 3 
+## Problem 3
 
+**a**
 
+$Y_{ijk} = \mu + \alpha_i + \beta_j + (\alpha \beta)_{ij} + \epsilon_{ijk}$
+
+i=1,2,3 (variety); j=1,2,3(temp); k=1,...,8
+
+$Y_{ijk}$= total dry weight of plant material
+
+$\mu$ = overall mean
+
+$\alpha_i$ = effect of variety i, $\sum \alpha_i = 0$
+
+$\beta_j$= effect temperature j, $\sum \beta_j = 0$
+
+$(\alpha \beta)_{ij}$ = interaction effect subject to $\sum(\alpha \beta)_{ij} = 0$
+
+$\epsilon_{ijk}$ = random error \~N(0, $\sigma^2)$
+
+assumptions: independence, normality, equal variance
+
+**b**
+
+| Source      | df  | SS        | MS       | F-value | p-value  |
+|-------------|-----|-----------|----------|---------|----------|
+| model       | 8   | 71692.11  | 8961.51  | 189.01  | \<0.0001 |
+| Variety     | 2   | 3325.78   | 1662.89  | 35.07   | \<0.0001 |
+| Temperature | 2   | 61549.77  | 30774.86 | 649.08  | \<0.0001 |
+| Var x Temp  | 4   | 6817.6    | 1704.4   | 35.95   | \<0.0001 |
+| Error       | 63  | 2987.02   | 47.413   | --      | --       |
+| Total       | 79  | 146372.28 | --       | --      | --       |
+
+**c**
+
+```{r, echo=FALSE}
+plant_data<-read.csv("plant_data.csv",header=TRUE)
+attach(plant_data)
+names(plant_data)
+Variety<-factor(Variety)
+Temperature<-factor(Temperature)
+interaction.plot(Temperature, Variety, Dry.Mean)
+```
+
+All three varieties increase with temperature, but at different rates. The lines cross, indicating a significant interaction. Variety 0 is lowest at 15°C but highest at 25°C. 
+
+**d**
+
+$H_o: all (\alpha\beta)_{ij} = 0$ 
+
+$H_A: at least one (\alpha\beta)_{ij} \neq 0$ 
+
+F-value: $\frac{MS_{AB}}{MSE}$ = 1704.4/47.413= 35.95 
+
+1-pf(35.94,4,63) = p value = 1.33e-15 
+
+There is a significant interaction between Variety and Temperature. 
 
 ## R code
 
@@ -78,3 +132,18 @@ $t_{\frac{\alpha}{2C},24}$ \* $\sqrt{2MSE/n_A}$ = 2.875 \* $\sqrt{60/3}$ = 12.86
 qtukey(.95,4,24)
 qt(0.0041667,24)
 ```
+
+**problem 3**
+
+```{r}
+1-pf(35.95,4,63)
+```
+```{r}
+plant_data<-read.csv("plant_data.csv",header=TRUE)
+attach(plant_data)
+names(plant_data)
+Variety<-factor(Variety)
+Temperature<-factor(Temperature)
+interaction.plot(Temperature, Variety, Dry.Mean)
+```
+
